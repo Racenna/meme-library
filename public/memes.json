@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Distracted Boyfriend",
+    "image": "https://i.imgflip.com/1ur9b0.jpg",
+    "likes": 42
+  },
+  {
+    "id": 2,
+    "name": "Drake Hotline Bling",
+    "image": "https://i.imgflip.com/30b1gx.jpg",
+    "likes": 35
+  },
+  {
+    "id": 3,
+    "name": "Woman Yelling at a Cat",
+    "image": "https://i.imgflip.com/345v97.jpg",
+    "likes": 87
+  },
+  {
+    "id": 4,
+    "name": "Two Buttons",
+    "image": "https://i.imgflip.com/1g8my4.jpg",
+    "likes": 23
+  },
+  {
+    "id": 5,
+    "name": "Change My Mind",
+    "image": "https://i.imgflip.com/24y43o.jpg",
+    "likes": 56
+  },
+  {
+    "id": 6,
+    "name": "Expanding Brain",
+    "image": "https://i.imgflip.com/1jwhww.jpg",
+    "likes": 45
+  },
+  {
+    "id": 7,
+    "name": "Mocking Spongebob",
+    "image": "https://i.imgflip.com/1otk96.jpg",
+    "likes": 12
+  },
+  {
+    "id": 8,
+    "name": "One Does Not Simply",
+    "image": "https://i.imgflip.com/1bij.jpg",
+    "likes": 78
+  },
+  {
+    "id": 9,
+    "name": "Grumpy Cat",
+    "image": "https://i.imgflip.com/8p0a.jpg",
+    "likes": 34
+  },
+  {
+    "id": 10,
+    "name": "Success Kid",
+    "image": "https://i.imgflip.com/1bhk.jpg",
+    "likes": 91
+  }
+]
