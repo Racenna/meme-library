@@ -1,3 +1,5 @@
-export default function ListPage() {
-  return <div>List page</div>;
+import MemeList from "@/components/MemeList";
+
+export default async function ListPage() {
+  return <MemeList />;
 }
