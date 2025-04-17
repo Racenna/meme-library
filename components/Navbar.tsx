@@ -34,7 +34,7 @@ const Navbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex sm:!basis-2/3">
         {menuItems.map(({ label, link }) => (
-          <NavbarItem key={label} className="">
+          <NavbarItem key={label}>
             <Link
               size="lg"
               href={link}

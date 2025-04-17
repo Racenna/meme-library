@@ -8,7 +8,13 @@ module.exports = {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        "3xs": "22.5rem",
+        "2xs": "25rem",
+        xs: "26.8rem",
+      },
+    },
   },
   darkMode: "class",
   plugins: [heroui()],
