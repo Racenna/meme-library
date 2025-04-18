@@ -1,3 +1,5 @@
+import MemeTable from "@/components/MemeTable";
+
 export default function TablePage() {
-  return <div>table page</div>;
+  return <MemeTable />;
 }

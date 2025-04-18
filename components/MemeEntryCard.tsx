@@ -1,17 +1,17 @@
 import { Card, CardFooter, CardHeader } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import Sheet from "@/components/svg/Sheet";
-import List from "@/components/svg/List";
+import SheetIcon from "@/components/svg/Sheet";
+import ListIcon from "@/components/svg/List";
 
 const MemeEntryCard = ({ label, link }: { label: string; link: string }) => {
   return (
     <Card className="w-full min-h-[260px] max-w-xs justify-between p-4">
       <CardHeader className="flex justify-center">
         {link.includes("table") ? (
-          <Sheet className="stroke-foreground size-14" />
+          <SheetIcon className="stroke-foreground size-14" />
         ) : (
-          <List className="stroke-foreground size-14" />
+          <ListIcon className="stroke-foreground size-14" />
         )}
       </CardHeader>
       <div className="text-center">
