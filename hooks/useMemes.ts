@@ -4,38 +4,29 @@ import { useEffect, useState } from "react";
 
 export const useMemes = () => {
   const [memes, setMemes] = useState<MemeItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchMemes = async () => {
+    setIsLoading(true);
+    const memesData = await getMemesList();
+
+    if (!memesData.success) {
+      addToast({
+        title: "Error",
+        description: memesData.error,
+        color: "danger",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    setMemes(memesData.memes);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchMemes = async () => {
-      const memesData = await getMemesList();
-
-      if (!memesData.success) {
-        if (isMounted) {
-          addToast({
-            title: "Error",
-            description: memesData.error,
-            color: "danger",
-          });
-          setIsLoading(false);
-        }
-        return;
-      }
-
-      if (isMounted) {
-        setMemes(memesData.memes);
-        setIsLoading(false);
-      }
-    };
-
     fetchMemes();
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
-  return { memes, isLoading };
+  return { memes, isLoading, refetch: fetchMemes };
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemes } from "@/hooks/useMemes";
-import { Button, Tooltip } from "@heroui/react";
+import { Button, Tooltip, useDisclosure } from "@heroui/react";
 import {
   Table,
   TableBody,
@@ -10,53 +10,68 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/table";
-import { Key, useCallback } from "react";
-import EditIcon from "./svg/Edit";
-import SmartTooltip from "./SmartTooltip";
+import { Key, useCallback, useState } from "react";
+import EditIcon from "@/components/svg/Edit";
+import SmartTooltip from "@/components/SmartTooltip";
+import EditMemeModal from "@/components/EditMemeModal";
 
 const MemeTable = () => {
-  const { memes, isLoading } = useMemes();
+  const { memes, isLoading, refetch } = useMemes();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const renderCell = useCallback((meme: MemeItem, columnKey: Key) => {
-    const cellValue = meme[columnKey as keyof MemeItem];
+  const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
 
-    switch (columnKey) {
-      case "name":
-        return (
-          <SmartTooltip
-            content={cellValue}
-            color="primary"
-            className="sm:hidden"
-          >
-            <p className="max-w-[100px] truncate whitespace-nowrap sm:max-w-none">
-              {cellValue}
-            </p>
-          </SmartTooltip>
-        );
-      case "image":
-        return (
-          <SmartTooltip
-            content={cellValue}
-            color="primary"
-            className="sm:hidden"
-          >
-            <p className="max-w-[100px] truncate whitespace-nowrap sm:max-w-none">
-              {cellValue}
-            </p>
-          </SmartTooltip>
-        );
-      case "actions":
-        return (
-          <Tooltip color="primary" content="Edit meme">
-            <Button isIconOnly>
-              <EditIcon />
-            </Button>
-          </Tooltip>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+  const openModalHandler = useCallback(
+    (meme: MemeItem) => {
+      setSelectedMeme(meme);
+      onOpen();
+    },
+    [onOpen]
+  );
+
+  const renderCell = useCallback(
+    (meme: MemeItem, columnKey: Key) => {
+      const cellValue = meme[columnKey as keyof MemeItem];
+
+      switch (columnKey) {
+        case "name":
+          return (
+            <SmartTooltip
+              content={cellValue}
+              color="primary"
+              className="sm:hidden"
+            >
+              <p className="max-w-[100px] truncate whitespace-nowrap sm:max-w-none">
+                {cellValue}
+              </p>
+            </SmartTooltip>
+          );
+        case "image":
+          return (
+            <SmartTooltip
+              content={cellValue}
+              color="primary"
+              className="sm:hidden"
+            >
+              <p className="max-w-[100px] truncate whitespace-nowrap sm:max-w-none">
+                {cellValue}
+              </p>
+            </SmartTooltip>
+          );
+        case "actions":
+          return (
+            <Tooltip color="primary" content="Edit meme">
+              <Button isIconOnly onPress={() => openModalHandler(meme)}>
+                <EditIcon />
+              </Button>
+            </Tooltip>
+          );
+        default:
+          return cellValue;
+      }
+    },
+    [openModalHandler]
+  );
 
   if (isLoading) return <div>is loading...</div>;
 
@@ -77,7 +92,7 @@ const MemeTable = () => {
 
   return (
     <div className="flex justify-center p-4">
-      <Table className="max-w-4xl" isStriped>
+      <Table className="max-w-4xl" isStriped aria-label="Meme Table">
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn key={column.key}>{column.label}</TableColumn>
@@ -93,6 +108,12 @@ const MemeTable = () => {
           )}
         </TableBody>
       </Table>
+      <EditMemeModal
+        meme={selectedMeme}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onSuccess={refetch}
+      />
     </div>
   );
 };
