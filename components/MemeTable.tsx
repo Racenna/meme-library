@@ -14,6 +14,7 @@ import { Key, useCallback, useState } from "react";
 import EditIcon from "@/components/svg/Edit";
 import SmartTooltip from "@/components/SmartTooltip";
 import EditMemeModal from "@/components/EditMemeModal";
+import MemeTableLoader from "./loaders/MemeTableLoader";
 
 const MemeTable = () => {
   const { memes, isLoading, refetch } = useMemes();
@@ -73,7 +74,7 @@ const MemeTable = () => {
     [openModalHandler]
   );
 
-  if (isLoading) return <div>is loading...</div>;
+  if (isLoading) return <MemeTableLoader />;
 
   if (memes.length === 0)
     return (

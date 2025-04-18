@@ -13,9 +13,8 @@ import { Input } from "@heroui/input";
 import { updateMeme } from "@/actions/memes.action";
 import { useFormFields } from "@/hooks/useFormFields";
 import { addToast } from "@heroui/toast";
-import { cn } from "@heroui/react";
+import { cn, Tooltip } from "@heroui/react";
 import ShuffleIcon from "@/components/svg/Shuffle";
-import SmartTooltip from "@/components/SmartTooltip";
 
 interface ModalProps {
   meme: MemeItem | null;
@@ -186,10 +185,7 @@ const EditMemeModal = ({
                       }}
                       isDisabled={isPending}
                     />
-                    <SmartTooltip
-                      color="primary"
-                      content="Randomize Likes number"
-                    >
+                    <Tooltip color="primary" content="Randomize Likes number">
                       <Button
                         isIconOnly
                         color="primary"
@@ -206,7 +202,7 @@ const EditMemeModal = ({
                       >
                         <ShuffleIcon />
                       </Button>
-                    </SmartTooltip>
+                    </Tooltip>
                   </div>
                 </div>
                 <div className="flex justify-end gap-2 py-2">
