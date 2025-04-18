@@ -29,7 +29,9 @@ const Navbar = () => {
           aria-label={isOpen ? "Close menu" : "Open menu"}
         />
         <NavbarBrand className="title">
-          <h3 className="text-xl sm:text-2xl font-bold">Meme Handbook</h3>
+          <Link color="foreground" href="/">
+            <h3 className="text-xl sm:text-2xl font-bold">Meme Handbook</h3>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="hidden sm:flex sm:!basis-2/3">
